@@ -9,9 +9,9 @@ def country(country):
     """
     url = 'http://services.groupkt.com/country/get/iso2code/{0}'.format(country)
     response = requests.get(url)
-
-    click.echo(response)
-    click.echo(response.text)
+    res = json.loads(response.text)
+    mess = 'That Country\'s full name is {0} \n It\'s alpha3_code is {1}'.format(res['RestResponse']['result']['name'], res['RestResponse']['result']['alpha3_code'])
+    click.echo(mess)
 
 if __name__ == '__main__':
     country()
